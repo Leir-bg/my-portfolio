@@ -4,56 +4,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio</title>
+
+    <link rel="stylesheet" href="res/css/styles.css">
 </head>
 <body>
-    <div id="header">
-        <nav></nav>
-    </div>
-    
-    <div id="main">
+    <aside id="side_nav">
+        <nav>
+            SIDE MENU
+        </nav>
+    </aside>
+    <div class="content_wrap">
         <!--? INTRO [start] -->
         <main>
             <div id="introduction">
-                <!-- 
+                INTRODUCTION
+                <!--
                     Hey there! I'm Gabriel Corpuz, a front-end web developer passionate about crafting unforgettable digital experiences. With four years in the web development world, I've become quite adept at blending creativity seamlessly with functionality.
-
                     When I'm not coding, I'm geeking out over CSS magic. Take a spin around this website; it's mostly CSS with just a hint of JavaScript. Feel free to explore my portfolio—it's like a digital scrapbook of my coding adventures. Whether I'm fine-tuning pixels or diving into new projects, I'm thrilled to have you along for the journey. Let's dive in and explore together!
                 -->
             </div>
+            <div id="interests">
+                INTERESTS
+            </div>
         </main>
         <!--? INTRO [end] -->
-        
+    
         <!--? SKILLS [start] -->
-        <!-- 
+        <!--
+            > FRONT END
             HTML
             CSS
-            JAVASCRIPT
+            JQUERY
+            PUG
+    
+            > BACK END
             NODEJS
             PHP
+            JAVASCRIPT
             LARAVEL
-            PUG
+            > VERSION CONTROL SYSTEMS
+            GIT
         -->
-        <div id="skill_area">
-            <ul>
-                <li data-skill-range="10">HTML</li>
-                <li data-skill-range="9">CSS</li>
-                <li data-skill-range="7">Javascript</li>
-                <li data-skill-range="5">PHP</li>
-                <li data-skill-range="5">NODE.JS</li>
-                <li data-skill-range="4">Laravel</li>
-                <li data-skill-range="7">Pug</li>
-            </ul>
+        <div id="skills_area">
+            SKILLS
         </div>
         <!--? SKILLS [end] -->
-        <!--? PROJECTS -->
-        <!--? TOOLS -->
+        <!--? PROJECTS and TOOLS [start] -->
+        <!--
+            CUSTOM DARKMODE PLUGIN
+            FOLDER MAKER
+            BULK EDIT
+            -->
+        <div id="projects_area">
+            PROJECTS
+        </div>
+        <!--? PROJECTS and TOOLS [end] -->
+        <!--? CERTIFICATS [start] -->
+        <!-- COMING SOON -->
+        <div id="certificates_area">
+            CERTIFICATES
+        </div>
+        <!--? CERTIFICATS [end] -->
         <!--? SOCIAL MEDIA LINKS (LINKEDIN, GITHUB) [start] -->
         <!--
             PERSONAL: https://github.com/Leir-bg
             WORK: https://github.com/FDC-gabriel
             CODEPEN: https://codepen.io/leir-bg
         -->
+        <div id="contacts_area">
+            CONTACT INFO
+        </div>
         <!--? SOCIAL MEDIA LINKS (LINKEDIN, GITHUB, CODEPEN) [end] -->
     </div>
+
+    <footer>
+        <script async src="res/scripts/jquery.min.js"></script>
+        <script src="res/scripts/script.js"></script>
+    </footer>
 </body>
 </html>

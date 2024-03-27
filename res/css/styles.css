@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+/** PRESETS [start] */
+html{
+    font-size: 16px; /*! BASELINE */
+
+    --PRIMARY-FONT: normal normal 800 1.8em/100% 'Monsterrat', sans-serif;
+    --SECONDARY-FONT: normal normal 400 1em/100% 'Lato', 'Times New Roman', 'Arial';
+    --WRAP-WIDTH: 1000px;
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    float: none;
+    clear: both;
+}
+/** PRESETS [end] */
+
+body{
+    position: relative;
+    display: block;
+    width: 100%;
+    background-color: hsl(207, 14%, 22%);
+}
+
+#side_nav{
+    position: fixed;
+    top: 20%;
+    left: calc(var(--WRAP-WIDTH) + 20%);
+    font: var(--SECONDARY-FONT);
+}
+
+.content_wrap{
+    display: block;
+    max-width: var(--WRAP-WIDTH);
+    width: 100%;
+    margin-inline: auto;
+    box-shadow: 0 4px 10px -2px #2a2a2a;
+    border-radius: 6px;
+    
+    --_area-text-color: #fff;
+    --_area-background-color: #ccc;
+}
+
+.content_wrap > *{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    min-height: 600px; /*! temporary */
+    background-color: var(--_area-background-color);
+    color: var(--_area-text-color);
+    font: var(--PRIMARY-FONT);
+    font-size: 60px;
+    text-align: center;
+}
+
+/** areas [start] */
+main{
+    --_area-background-color: hsl(207, 100%, 9%);
+}
+
+#skills_area{
+    --_area-background-color: hsl(281, 100%, 9%);
+}
+
+#projects_area{
+    --_area-background-color: hsl(328, 100%, 9%)
+}
+
+#certificates_area{
+    --_area-background-color: hsl(23, 100%, 9%)
+}
+
+#contacts_area{
+    --_area-background-color: hsl(51, 100%, 9%)
+}
+/** areas [end] */
