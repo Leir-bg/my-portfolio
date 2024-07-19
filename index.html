@@ -8,78 +8,106 @@
     <link rel="stylesheet" href="res/css/styles.css">
 </head>
 <body>
-    <aside id="side_nav">
-        <nav>
-            SIDE MENU
-        </nav>
-    </aside>
-    <div class="content_wrap">
-        <!--? INTRO [start] -->
-        <main>
-            <div id="introduction">
-                INTRODUCTION
-                <!--
-                    Hey there! I'm Gabriel Corpuz, a front-end web developer passionate about crafting unforgettable digital experiences. With four years in the web development world, I've become quite adept at blending creativity seamlessly with functionality.
-                    When I'm not coding, I'm geeking out over CSS magic. Take a spin around this website; it's mostly CSS with just a hint of JavaScript. Feel free to explore my portfolio—it's like a digital scrapbook of my coding adventures. Whether I'm fine-tuning pixels or diving into new projects, I'm thrilled to have you along for the journey. Let's dive in and explore together!
-                -->
-            </div>
-            <div id="interests">
-                INTERESTS
-            </div>
-        </main>
-        <!--? INTRO [end] -->
-    
-        <!--? SKILLS [start] -->
-        <!--
-            > FRONT END
-            HTML
-            CSS
-            JQUERY
-            PUG
-    
-            > BACK END
-            NODEJS
-            PHP
-            JAVASCRIPT
-            LARAVEL
-            > VERSION CONTROL SYSTEMS
-            GIT
-        -->
-        <div id="skills_area">
-            SKILLS
-        </div>
-        <!--? SKILLS [end] -->
-        <!--? PROJECTS and TOOLS [start] -->
-        <!--
-            CUSTOM DARKMODE PLUGIN
-            FOLDER MAKER
-            BULK EDIT
-            -->
-        <div id="projects_area">
-            PROJECTS
-        </div>
-        <!--? PROJECTS and TOOLS [end] -->
-        <!--? CERTIFICATS [start] -->
-        <!-- COMING SOON -->
-        <div id="certificates_area">
-            CERTIFICATES
-        </div>
-        <!--? CERTIFICATS [end] -->
-        <!--? SOCIAL MEDIA LINKS (LINKEDIN, GITHUB) [start] -->
-        <!--
-            PERSONAL: https://github.com/Leir-bg
-            WORK: https://github.com/FDC-gabriel
-            CODEPEN: https://codepen.io/leir-bg
-        -->
-        <div id="contacts_area">
-            CONTACT INFO
-        </div>
-        <!--? SOCIAL MEDIA LINKS (LINKEDIN, GITHUB, CODEPEN) [end] -->
-    </div>
+    <main>
+        <div class="terminal">
+            <menu>
+                <li class="red"></li>
+                <li class="yellow"></li>
+                <li class="green"></li>
+            </menu>
 
+            <div class="wrapper" id="wrapper"></div>
+        </div>
+    </main>
+    
     <footer>
-        <script async src="res/scripts/jquery.min.js"></script>
-        <script src="res/scripts/script.js"></script>
+        <script src="res/scripts/jquery.min.js"></script>
+        <script src="https://unpkg.com/react/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <script type="text/babel">
+            const { useState } = React
+            const { createRoot } = ReactDOM
+
+            const wrapper = document.getElementById('wrapper')
+            const root = createRoot(wrapper)
+
+            const terminalOptions = [
+                { name: 'Home', key: 'home' },
+                { name: 'About', key: 'about' },
+                { name: 'Experience and Skills', key: 'exp' },
+                { name: 'Projects', key: 'projects' },
+                { name: 'Resume', key: 'resume' },
+                { name: 'Contact', key: 'contact' }
+            ];
+
+            function TerminalHistory() {
+                return <li>G:\Users\GUEST\Home</li>;
+            }
+
+            function TerminalSection() {
+                return (
+                    <>
+                        <p>Hi! Welcome to my portfolio.</p>
+                        <p>To interact with the terminal, input 'cd ../' followed by the <span>(option)</span>.</p>
+                    </>
+                );
+            }
+
+            function TerminalOptions({optionMap, currState}) {
+                return (
+                    <>
+                        {optionMap.map((opt) => (
+                            opt.key !== currState && (
+                                <li key={opt.key}>
+                                    {opt.name} <small>({opt.key})</small>
+                                </li>
+                            )
+                        ))}
+                    </>
+                );
+            }
+
+            function TerminalInput() {
+                return (
+                    <div className='input_wrap'>
+                        <label htmlFor="input">G:\Users\GUEST\HOME&gt;</label>
+                        <input id="input" type="text" placeholder="cd ../option" />
+                    </div>
+                );
+            }
+
+            function TerminalWrapper({option}) {
+                const [state, setState] = useState('home')
+
+                return (
+                    <>
+                        <ul className='history'>
+                            <TerminalHistory />
+                        </ul>
+
+                        <section>
+                            <TerminalSection />
+                        </section>
+
+                        <ol type='1' className='options'>
+                            <TerminalOptions optionMap={terminalOptions} currState={state} />
+                        </ol>
+
+                        <TerminalInput />
+                    </>
+                );
+            }
+
+            root.render(<TerminalWrapper />)
+        </script>
+
+        <script>
+            $(function(){
+                $('input').focus()
+                $('.terminal').scrollTop($('.terminal')[0].scrollHeight)
+            })
+        </script>
     </footer>
 </body>
 </html>
