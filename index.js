@@ -13,16 +13,25 @@ const terminalOptions = [
     {name: '404', key: '404'}
 ]
 
+let notFoundCounter = 0
+
 const getOption = (key) => {
     const option = terminalOptions.find(opt => opt.key === key)
-    return option.name ?? '404'
+    return option?.name ?? '404'
+}
+
+const downloadResume = () => {
+    const link = document.createElement('a')
+    link.href = 'Resume.pdf'
+    link.download = 'resume-gabriel-corpuz'
+    link.click()
 }
 
 function TerminalHistory({currstate}) {
     return <li>G:\Users\GUEST\{getOption(currstate)}</li>
 }
 
-function TerminalSection({currState}) {
+function TerminalSection({currState, stateSetter}) {
     const renderContent = () => {
         switch(currState){
             case 'home':
@@ -68,11 +77,8 @@ function TerminalSection({currState}) {
                     </>
                 )
             case 'resume':
-                return (
-                    <>
-                    <p>Resume page</p>
-                    </>
-                )
+                downloadResume()
+                stateSetter('home')
             case 'contact':
                 return (
                     <>
@@ -144,7 +150,7 @@ function TerminalWrapper({option}) {
         </ul>
         
         <section>
-        <TerminalSection currState={state} />
+        <TerminalSection currState={state} stateSetter={setState} />
         </section>
         
         <ol type='1' className='options'>

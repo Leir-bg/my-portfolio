@@ -63,6 +63,7 @@ main{
     --gap: 8px;
     --color1: #5353d6;
 
+    container: terminal/inline-size;
     position: relative;
     display: block;
     margin: auto;
@@ -145,8 +146,9 @@ main{
             gap: 1em;
             
             img{
-                width: 100px;
-                height: 100px;
+                --_image-width: 100px;
+                width: var(--_image-width);
+                height: var(--_image-width);
                 object-fit: contain;
                 border-radius: 50%;
             }
@@ -190,6 +192,32 @@ main{
         input[type="text"]:focus,
         input[type="text"]:focus-visible{
             outline: none;
+        }
+    }
+
+    @container terminal (width <= 480px){
+        .col2{
+            grid-template-columns: 1fr;
+
+            .pp{
+                display: block;
+
+                img{
+                    --_image-width: 150px;
+                    float: left;
+                    shape-outside: margin-box;
+                    margin-right: 1em;
+                }
+
+                p{
+                    display: inline;
+                    text-align: justify;
+                }
+            }
+        }
+
+        .input_wrap{
+            grid-template-columns: 1fr;
         }
     }
 }
