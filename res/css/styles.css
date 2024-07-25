@@ -67,7 +67,7 @@ main{
     position: relative;
     display: block;
     margin: auto;
-    width: 60%;
+    width: 90%;
     max-width: 800px;
     overflow: hidden;
     border-radius: var(--gap);

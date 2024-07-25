@@ -83,10 +83,8 @@ function TerminalSection({currState, stateSetter}) {
                 return (
                     <>
                     <h2>Contact: </h2>
-                    <p>Cellphone: +63 930 593 3195</p>
-                    <br/>
-                    <h2>Email: </h2>
-                    <p><a href="mailto:gabrielcorpuz0914@gmail.com">gabrielcorpuz0914@gmail.com</a></p>
+                    <p>Cellphone: <a href="tel:+639305933195">+63 930 593 3195</a></p>
+                    <p>Email: <a href="mailto:gabrielcorpuz0914@gmail.com">gabrielcorpuz0914@gmail.com</a></p>
                     </>
                 )
             default:
