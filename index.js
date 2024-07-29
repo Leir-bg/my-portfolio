@@ -1,4 +1,4 @@
-const { useState } = React
+const { useState, useEffect } = React
 const { createRoot } = ReactDOM
 
 const wrapper = document.getElementById('wrapper')
@@ -25,6 +25,7 @@ const downloadResume = () => {
     link.href = 'Resume.pdf'
     link.download = 'resume-gabriel-corpuz'
     link.click()
+    link.remove()
 }
 
 function TerminalHistory({currstate}) {
@@ -65,15 +66,12 @@ function TerminalSection({currState, stateSetter}) {
             case 'exp':
                 return (
                     <>
-                    <p>Experience:</p>
+                    <h2>Experience:</h2>
                     <p>Proweaver, Inc. - 3 years (Web Developer)</p>
                     <p>Forty Degrees Celsius, Inc. - Current (Front End Developer)</p>
                     <br/>
-                    <p>Skills:</p>
-                    <p>HTML, CSS, JavaScript/JQuery, React, NodeJS, Express, PHP, Laravel, Wordpress</p>
-                    <br/>
-                    <h2>Certifications:</h2>
-                    <p>--</p>
+                    <h2>Skills:</h2>
+                    <p>JQuery, React, NodeJS, Express, PHP, Laravel, Wordpress</p>
                     </>
                 )
             case 'resume':
@@ -90,9 +88,10 @@ function TerminalSection({currState, stateSetter}) {
             default:
                 return (
                     <>
-                    <p>Page not found :(</p>
+                    <p>Page not found (ᴗ_ ᴗ。)</p>
                     </>
                 )
+                
         }
     }
 
@@ -106,7 +105,7 @@ function TerminalOptions({optionMap, currState}) {
             opt.key !== currState &&
             opt.key !== '404' && (
                 <li key={opt.key}>
-                {opt.name} <small>({opt.key})</small>
+                    {opt.name} <small>({opt.key})</small>
                 </li>
             )
         ))}
@@ -121,6 +120,7 @@ function TerminalInput({currstate, stateSetter}) {
             stateSetter(value[value.length - 1])
         }
         catch(err){
+            notFoundCounter++
             stateSetter('404')
         }
 
@@ -140,7 +140,7 @@ function TerminalInput({currstate, stateSetter}) {
 
 function TerminalWrapper({option}) {
     const [state, setState] = useState('home')
-    
+
     return (
         <>
         <ul className='history'>
