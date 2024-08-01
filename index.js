@@ -46,7 +46,7 @@ function TerminalSection({currState, stateSetter}) {
                 return (
                     <div className="col2">
                         <div className="pp">
-                            <img src="https://placehold.jp/000000/ffffff/150x150.png" alt="Gabriel D. Corpuz" />
+                            <img src="./res/images/profile.jpg" alt="Gabriel D. Corpuz" />
                             <p>Hello! I'm Gabriel Corpuz, a 26-year-old front-end web developer based in Cebu City. I'm passionate about creating dynamic and responsive websites, and I'm currently on a journey to become a full-stack developer.</p>
                         </div>
                         <div className="edu">
@@ -86,6 +86,7 @@ function TerminalSection({currState, stateSetter}) {
                     </>
                 )
             default:
+                stateSetter('404')
                 return (
                     <>
                     <p>Page not found (ᴗ_ ᴗ。)</p>
@@ -140,6 +141,16 @@ function TerminalInput({currstate, stateSetter}) {
 
 function TerminalWrapper({option}) {
     const [state, setState] = useState('home')
+
+    useEffect(() => {
+        const bg = $('main').find('.animated_bg')
+        bg.addClass(`${state != '404' ? state : 'not_found'}`)
+        
+        let classArray = bg.attr('class').split(' ')
+        if(classArray.length > 2){
+            bg.removeClass(`${classArray[1]}`)
+        }
+    }, [state])
 
     return (
         <>

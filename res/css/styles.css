@@ -35,6 +35,7 @@ html{
     font-size: 16px; /*! BASELINE */
 
     --PRIMARY-FONT: normal normal 400 1em/100% 'Terminus', monospace;
+    --PRIMARY-BG: #141421;
     font: var(--PRIMARY-FONT);
     line-height: 150%;
 }
@@ -49,6 +50,10 @@ html{
     color: inherit;
     line-height: inherit;
 }
+
+a[href^="mailto:"]{
+    word-break: break-all;
+}
 /** PRESETS [end] */
 
 main{
@@ -56,7 +61,117 @@ main{
     place-content: center;
     width: 100vw;
     height: 100vh;
-    background: #141421;
+}
+
+.disable_animations{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.animated_bg{
+    position: fixed;
+    inset: 0;
+    background-color: var(--PRIMARY-BG);
+    transition: background-color 0.5s ease;
+
+    svg{
+        position: absolute;
+        bottom: 0;
+    }
+
+    .parallax > use{
+        --_delay: 0;
+        --_duration: 25s;
+        --_r: 255;
+        --_g: 255;
+        --_b: 255;
+        --_fill-opacity: 0.2;
+        
+        animation: waves var(--_duration) cubic-bezier(.55, .5, .45, .5) var(--_delay) infinite;
+        fill: rgba(var(--_r) var(--_g) var(--_b) / var(--_fill-opacity));
+        transition: fill 0.5s ease;
+
+        &:nth-child(1){
+            --_delay: -2s;
+            --_duration: 7s;
+        }
+
+        &:nth-child(2){
+            --_delay: -3s;
+            --_duration: 10s;
+            --_fill-opacity: 0.3;
+        }
+
+        &:nth-child(3){
+            --_delay: -4s;
+            --_duration: 13s;
+            --_fill-opacity: 0.5;
+        }
+
+        &:nth-child(4){
+            --_delay: -5s;
+            --_duration: 20s;
+            --_fill-opacity: 0.7;
+        }
+    }
+    
+    &.home{
+         .parallax > use{
+            --_r: 255;
+            --_g: 255;
+            --_b: 255;
+        }
+    }
+
+    &.about{
+        --PRIMARY-BG: rgb(2 21 38);
+
+         .parallax > use{
+            --_r: 3;
+            --_g: 52;
+            --_b: 110;
+        }
+    }
+
+    &.exp{
+        --PRIMARY-BG: rgb(26 54 54);
+
+         .parallax > use{
+            --_r: 64;
+            --_g: 83;
+            --_b: 76;
+        }
+    }
+
+    &.contact{
+        --PRIMARY-BG: rgb(62 50 50);
+
+         .parallax > use{
+            --_r: 80;
+            --_g: 60;
+            --_b: 60;
+        }
+    }
+
+    &.not_found{
+        --PRIMARY-BG: rgb(160 21 62);
+
+         .parallax > use{
+            --_r: 255;
+            --_g: 32;
+            --_b: 78;
+        }
+    }
+}
+
+@keyframes waves{
+    0%{
+        transform: translate3d(-90px, 0, 0);
+    }
+    100%{
+        transform: translate3d(85px, 0, 0);
+    }
 }
 
 .terminal{
@@ -71,10 +186,21 @@ main{
     max-width: 800px;
     overflow: hidden;
     border-radius: var(--gap);
-    background: transparent;
-    border: 2px solid var(--color1);
-    box-shadow: 0 0 24px 4px var(--color1);
+    /* border: 2px solid var(--color1); */
     color: #fff;
+
+    &:before{
+        --_terminal-opacity: 0.25;
+
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(20 20 33 / var(--_terminal-opacity));
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 4px 8px rgba(0 0 0 / var(--_terminal-opacity));
+        z-index: 1;
+    }
 
     menu{
         position: sticky;
@@ -86,6 +212,7 @@ main{
         width: 100%;
         border-bottom: 1px solid var(--color1);
         background-color: #141421;
+        z-index: 2;
 
         li{
             list-style-type: none;
@@ -102,9 +229,11 @@ main{
     }
 
     .wrapper{
+        position: relative;
         padding: calc(var(--gap) * 2);
         max-height: 325px;
         overflow-y: auto;
+        z-index: 2;
     }
     
     h1{
@@ -125,7 +254,7 @@ main{
     }
 
     p span{
-        color: green;
+        color: #00ed00;
     }
 
     .col2{
@@ -172,7 +301,7 @@ main{
         }
 
         small{
-            color: green;
+            color: #00ed00;
             font-size: 0.8em;
         }
     }
@@ -193,9 +322,21 @@ main{
         input[type="text"]:focus-visible{
             outline: none;
         }
+
+        ::placeholder{
+            color: #00ed00;
+        }
     }
 
     @container terminal (width <= 480px){
+        .terminal{
+            margin-top: 10%;
+        }
+
+        .wrapper{
+            max-height: 80vh;
+        }
+
         .col2{
             grid-template-columns: 1fr;
 
@@ -203,10 +344,11 @@ main{
                 display: block;
 
                 img{
-                    --_image-width: 150px;
+                    --_image-width: 90px;
                     float: left;
                     shape-outside: margin-box;
                     margin-right: 1em;
+                    border-radius: 0;
                 }
 
                 p{
