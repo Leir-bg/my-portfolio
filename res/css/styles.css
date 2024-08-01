@@ -358,10 +358,10 @@ main{
             grid-template-columns: 1fr;
         }
     }
+}
 
-    @media only screen and (width <= 480px){
-        .terminal{
-            margin-top: 10%;
-        }
+@media only screen and (width <= 480px){
+    .terminal{
+        margin-top: 10%;
     }
 }
