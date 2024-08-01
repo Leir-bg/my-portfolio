@@ -330,7 +330,7 @@ main{
 
     @container terminal (width <= 480px){
         .wrapper{
-            max-height: 80vh;
+            max-height: 80dvh;
         }
 
         .col2{
