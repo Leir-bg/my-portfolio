@@ -327,39 +327,39 @@ main{
             color: #00ed00;
         }
     }
+}
 
-    @container terminal (width <= 480px){
-        .terminal{
-            margin-top: 10%;
-        }
+@container terminal (width <= 480px){
+    .terminal{
+        margin-top: 10%;
+    }
 
-        .wrapper{
-            max-height: 80vh;
-        }
+    .wrapper{
+        max-height: 80vh;
+    }
 
-        .col2{
-            grid-template-columns: 1fr;
+    .col2{
+        grid-template-columns: 1fr;
 
-            .pp{
-                display: block;
+        .pp{
+            display: block;
 
-                img{
-                    --_image-width: 90px;
-                    float: left;
-                    shape-outside: margin-box;
-                    margin-right: 1em;
-                    border-radius: 0;
-                }
+            img{
+                --_image-width: 90px;
+                float: left;
+                shape-outside: margin-box;
+                margin-right: 1em;
+                border-radius: 0;
+            }
 
-                p{
-                    display: inline;
-                    text-align: justify;
-                }
+            p{
+                display: inline;
+                text-align: justify;
             }
         }
+    }
 
-        .input_wrap{
-            grid-template-columns: 1fr;
-        }
+    .input_wrap{
+        grid-template-columns: 1fr;
     }
 }
