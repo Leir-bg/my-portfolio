@@ -123,7 +123,7 @@ function TerminalOptions({optionMap, currState}) {
     )
 }
 
-function TerminalInput({currstate, stateSetter}) {
+function TerminalInput({currstate, stateSetter, visits}) {
     const handleInput = (e) => {
         try{
             const value = new RegExp(`cd ../(.*)`).exec(e.target[0].value)
@@ -142,7 +142,7 @@ function TerminalInput({currstate, stateSetter}) {
             e.preventDefault()
             handleInput(e)
         }}>
-            <label htmlFor="input">G:\Users\GUEST\{getOption(currstate)}&gt;</label>
+            <label htmlFor="input">G:\Users\GUEST_{visits}\{getOption(currstate)}&gt;</label>
             <input id="input" type="text" placeholder="cd ../option" />
         </form>
     )
@@ -150,7 +150,7 @@ function TerminalInput({currstate, stateSetter}) {
 
 function TerminalWrapper({option}) {
     const [state, setState] = useState('home')
-    const [visits, setVisits] = useState(0)
+    const [visits, setVisits] = useState('#')
 
     useEffect(() => {
         const bg = $('main').find('.animated_bg')
@@ -182,7 +182,7 @@ function TerminalWrapper({option}) {
         <TerminalOptions optionMap={terminalOptions} currState={state} />
         </ol>
         
-        <TerminalInput currstate={state} stateSetter={setState} />
+        <TerminalInput currstate={state} stateSetter={setState} visits={visits} />
         </>
     )
 }
