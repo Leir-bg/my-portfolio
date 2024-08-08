@@ -13,7 +13,16 @@ const terminalOptions = [
     {name: '404', key: '404'}
 ]
 
-let notFoundCounter = 0
+// let notFoundCounter = 0
+
+const namespace = encodeURIComponent('portfolio-gabrielcorpuz')
+const keyspace = encodeURIComponent('visits')
+
+const getVisits = async () => {
+    const response = await fetch(`https://api.counterapi.dev/v1/${namespace}/${keyspace}/up`)
+    const data = await response.json()
+    return data
+}
 
 const getOption = (key) => {
     const option = terminalOptions.find(opt => opt.key === key)
@@ -28,8 +37,8 @@ const downloadResume = () => {
     link.remove()
 }
 
-function TerminalHistory({currstate}) {
-    return <li>G:\Users\GUEST\{getOption(currstate)}</li>
+function TerminalHistory({currstate, visits}) {
+    return <li>G:\Users\GUEST_{visits}\{getOption(currstate)}</li>
 }
 
 function TerminalSection({currState, stateSetter}) {
@@ -141,6 +150,7 @@ function TerminalInput({currstate, stateSetter}) {
 
 function TerminalWrapper({option}) {
     const [state, setState] = useState('home')
+    const [visits, setVisits] = useState(0)
 
     useEffect(() => {
         const bg = $('main').find('.animated_bg')
@@ -152,10 +162,16 @@ function TerminalWrapper({option}) {
         }
     }, [state])
 
+    useEffect(() => {
+        getVisits().then(data => {
+            setVisits(data.count)
+        })
+    }, [])
+
     return (
         <>
         <ul className='history'>
-        <TerminalHistory currstate={state} />
+        <TerminalHistory currstate={state} visits={visits} />
         </ul>
         
         <section>

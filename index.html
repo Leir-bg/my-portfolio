@@ -38,12 +38,28 @@
         </div>
     </main>
     
+    <span id="counter"></span>
     <footer>
         <script src="res/scripts/jquery.min.js"></script>
         <script src="https://unpkg.com/react/umd/react.development.js" crossorigin></script>
         <script src="https://unpkg.com/react-dom/umd/react-dom.development.js" crossorigin></script>
         <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
         <script type="text/babel" src="index.js"></script>
+
+        <!-- <script>
+            let namespace = encodeURIComponent('portfolio-gabrielcorpuz')
+            let name = encodeURIComponent('counter')
+            $(function(){
+                fetch('https://api.counterapi.dev/v1/text/text/up')
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(JSON.stringify(data))
+                    })
+                    .catch(error => {
+                        console.error('Error:', error)
+                    })
+            })
+        </script> -->
     </footer>
 </body>
 </html>
