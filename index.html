@@ -46,20 +46,9 @@
         <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
         <script type="text/babel" src="index.js"></script>
 
-        <!-- <script>
-            let namespace = encodeURIComponent('portfolio-gabrielcorpuz')
-            let name = encodeURIComponent('counter')
-            $(function(){
-                fetch('https://api.counterapi.dev/v1/text/text/up')
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log(JSON.stringify(data))
-                    })
-                    .catch(error => {
-                        console.error('Error:', error)
-                    })
-            })
-        </script> -->
+        <script>
+            var isReduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        </script>
     </footer>
 </body>
 </html>
