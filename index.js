@@ -112,11 +112,11 @@ function TerminalSection({currState, stateSetter}) {
                         </div>
                         <div className="interest">
                             <h2><RandomizedText text="Interests:" /></h2>
-                            <p><RandomizedText text="CSS/JS updates, AI, other advancements in technology" /></p>
+                            <p><RandomizedText text="CSS/JS updates, AI, other advancements in technology, code techniques" /></p>
                         </div>
                         <div className="hobby">
                             <h2><RandomizedText text="Hobbies:"/></h2>
-                            <p><RandomizedText text="Reading books/ebooks, Playing guitar, traveling, working out, playing video games"/></p>
+                            <p><RandomizedText text="Learning new code techniques, reading books/ebooks, playing games"/></p>
                         </div>
                     </div>
                 )
@@ -127,7 +127,7 @@ function TerminalSection({currState, stateSetter}) {
                     <p><RandomizedText text="4+ years: Front End Developer" /></p>
                     <br/>
                     <h2><RandomizedText text="Toolset:"/></h2>
-                    <p><RandomizedText text="JQuery, React, NodeJS, Express, PHP, Laravel, Wordpress"/></p>
+                    <p><RandomizedText text="JQuery, React, NodeJS, Express, PHP, Laravel, Wordpress, Docker, AngularJS"/></p>
                     </>
                 )
             case 'resume':
@@ -144,6 +144,10 @@ function TerminalSection({currState, stateSetter}) {
                     <p>
                         <RandomizedText text="Email:"/>&nbsp;
                         <a href="mailto:gabrielcorpuz0914@gmail.com"><RandomizedText text="gabrielcorpuz0914@gmail.com"/></a>
+                    </p>
+                    <p>
+                        <RandomizedText text="LinkedIn:"/>&nbsp;
+                        <a href="https://www.linkedin.com/in/gcorpuz091416/"><RandomizedText text="www.linkedin.com/in/gcorpuz091416"/></a>
                     </p>
                     </>
                 )
