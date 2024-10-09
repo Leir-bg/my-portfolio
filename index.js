@@ -147,7 +147,7 @@ function TerminalSection({currState, stateSetter}) {
                     </p>
                     <p>
                         <RandomizedText text="LinkedIn:"/>&nbsp;
-                        <a href="https://www.linkedin.com/in/gcorpuz091416/"><RandomizedText text="www.linkedin.com/in/gcorpuz091416"/></a>
+                        <a target="_blank" href="https://www.linkedin.com/in/gcorpuz091416/"><RandomizedText text="www.linkedin.com/in/gcorpuz091416"/></a>
                     </p>
                     </>
                 )
