@@ -484,6 +484,7 @@ main{
         &.active{
             position: absolute;
             height: 100svh;
+            width: 100vw;
         }
 
         &:before{
