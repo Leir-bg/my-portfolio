@@ -475,12 +475,19 @@ main{
     }
 }
 @media only screen and (width <= 800px){
+    .animated_bg{
+        position: absolute;
+    }
     .projects_section{
         margin-right: -100vw;
 
         &.active{
             position: absolute;
             height: 100svh;
+        }
+
+        &:before{
+            z-index: 2;
         }
 
         img.hero{
