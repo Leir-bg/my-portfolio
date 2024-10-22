@@ -4,15 +4,6 @@ const { createRoot } = ReactDOM
 const wrapper = document.getElementById('wrapper')
 const root = createRoot(wrapper)
 
-const terminalOptions = [
-    {name: 'Home', key: 'home'},
-    {name: 'About', key: 'about'},
-    {name: 'Experience and Skills', key: 'exp'},
-    {name: 'Resume', key: 'resume'},
-    {name: 'Contact', key: 'contact'},
-    {name: '404', key: '404'}
-]
-
 let notFoundCounter = 0
 
 const namespace = encodeURIComponent('portfolio-gabrielcorpuz-new')
@@ -23,6 +14,16 @@ const getVisits = async () => {
     const data = await response.json()
     return data
 }
+
+const terminalOptions = [
+    {name: 'Home', key: 'home'},
+    {name: 'About', key: 'about'},
+    {name: 'Experience and Skills', key: 'exp'},
+    {name: 'Projects', key: 'prjs'},
+    {name: 'Resume', key: 'resume'},
+    {name: 'Contact', key: 'contact'},
+    {name: '404', key: '404'}
+]
 
 const getOption = (key) => {
     const option = terminalOptions.find(opt => opt.key === key)
@@ -66,7 +67,7 @@ function RandomizedText({text}){
     
                     setDisplayText(newText)
                     iteration += charJump || text.length / 3
-    
+
                     setTimeout(shuffleText, speed)
                 }
                 else{
@@ -154,6 +155,14 @@ function TerminalSection({currState, stateSetter}) {
             case 'log':
                 downloadLogs()
                 setTimeout(() => stateSetter('home'), 0)
+            case 'prjs':
+                return (
+                    <>
+                    <h2><RandomizedText text="Projects" /></h2>
+                    <br/>
+                    <TerminalProject/>
+                    </>
+                )
             default:
                 stateSetter('404')
                 return (
@@ -209,13 +218,132 @@ function TerminalInput({currstate, stateSetter, visits}) {
     )
 }
 
+const projects = [
+    {
+        name: 'Portfolio',
+        key: 'portfolio',
+        desc: 'A simple portfolio of myself to showcase my skills and capabilities.',
+        tools: ['React', 'HTML', 'CSS', 'JS'],
+        img: 'portfolio.png',
+        repo: 'https://github.com/Leir-bg/my-portfolio'
+    },
+    {
+        name: 'VSCode extension for NativeCamp FE devs',
+        key: 'fetool',
+        desc: 'A tool I made to help NativeCamp front-end devs to quickly navigate through git branches, toggle test configs, and more.',
+        tools: ['VSCode', 'JS'],
+        img: 'fetool.png',
+        repo: ''
+    },
+    {
+        name: 'Go Dark Proweaver',
+        key: 'godark',
+        desc: 'A custom Wordpress plugin I made for Proweaver, Inc. websites to quickly switch color themes, there were no compatible dark theme plugins for their websites before. (No longer maintained)',
+        tools: ['PHP', 'JS', 'CSS'],
+        img: 'unavailable.jpg',
+        repo: 'https://github.com/Leir-bg/go-dark-proweaver'
+    },
+    {
+        name: 'Bulk Edit tool',
+        key: 'bulkedit',
+        desc: 'Made to aid and accelerate the process of making textbooks for NativeCamp.',
+        tools: ['NodeJS', 'ExpressJS', 'JS', 'Pug', 'CSS'],
+        img: 'bulkedit.png',
+        repo: 'https://github.com/Leir-bg/bulk-edit-content-tool'
+    },
+    {
+        name: 'Bulk Create Folder tool',
+        key: 'bulkcreate',
+        desc: 'Made to aid and accelerate the process of making textbooks for NativeCamp.',
+        tools: ['NodeJS', 'ExpressJS', 'JS', 'Pug', 'CSS'],
+        img: 'bulkcreate.png',
+        repo: 'https://github.com/Leir-bg/bulk-create-folder-tool'
+    },
+    {
+        name: 'Web Scraper',
+        key: 'webscraper',
+        desc: 'Web scraping practice project.',
+        tools: ['NodeJS', 'Puppeteer', 'JS'],
+        img: '',
+        repo: ''
+    },
+    {
+        name: 'LaagTaCebu (in development)',
+        key: 'laagtacebu',
+        desc: 'A big project I am currently working on, a travel app for Cebu City that focuses on streamlining the process of finding places to visit, travel planning, and more.',
+        tools: ['Laravel', 'Docker', 'Blade', 'TailwindCSS', 'JS'],
+        img: 'laagtacebu.png',
+        repo: ''
+    }
+]
+
+function TerminalProject() {
+    const projectsSection = document.querySelector('.projects_section')
+    const projectContainer = projectsSection.querySelector('.project')
+
+    const iconMap = {
+        'html': 'html.svg',
+        'css': 'css.svg',
+        'js': 'js.svg',
+        'react': 'react.svg',
+        'nodejs': 'nodejs.png',
+        'expressjs': 'expressjs.svg',
+        'pug': 'pug.svg',
+        'laravel': 'laravel.svg',
+        'docker': 'docker.svg',
+        'blade': 'blade.svg',
+        'tailwindcss': 'tailwind.svg',
+        'php': 'php.png',
+        'puppeteer': 'puppeteer.svg',
+        'vscode': 'vscode.svg'
+    }
+
+    const handleClick = (currProject = '') => {
+        const project = projects.find(prj => prj.key === currProject)
+        if(project){
+            projectsSection.classList.remove('active')
+
+            setTimeout(() => {
+                const loadProject = new Promise(resolve => {
+                    resolve([project.name, project.img, project.desc, project.tools, project.repo])
+                }).then(data => {
+                    const [name, img, desc, tools, repo] = data
+                    projectContainer.innerHTML = `
+                        <img class="hero" src="./res/images/screenshots/${img != '' ? img : 'unavailable.jpg'}" alt="${name}" title="${name}"/>
+                        <h2>${name}</h2>
+                        <p>${desc}</p>
+                        <h3>Tools used:</h3>
+                        <ul>
+                            ${tools.map(tool => `<li><img src="./res/images/icons/${iconMap[tool.toLowerCase()]}" alt="${tool}" title="${tool}"/></li>`).join('')}
+                        </ul>
+                        ${repo ? `<a target="_blank" href="${repo}">View on GitHub</a>` : '<p>Private Repository (for security reasons)</p>'}`
+                }).then(() => {
+                    projectsSection.classList.add('active')
+                })
+            }, 1000)
+        }
+    }
+
+    return (
+        <div>
+            {projects.map(prj => (
+                <p onClick={() => handleClick(prj.key)} id={prj.key} className="hoverable" key={prj.key}>
+                    <RandomizedText text={prj.name} />
+                </p>
+            ))}
+        </div>
+    )
+}
+
 function TerminalWrapper({option}) {
     const [state, setState] = useState('home')
     const [visits, setVisits] = useState('#')
 
     useEffect(() => {
         const bg = $('main').find('.animated_bg')
+        const section = $('main').find('section')
         bg.addClass(`${state != '404' ? state : 'not_found'}`)
+        section.addClass(`${state != '404' ? state : 'not_found'}`)
         
         let classArray = bg.attr('class').split(' ')
         if(classArray.length > 2){

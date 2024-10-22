@@ -27,14 +27,20 @@
             </g>
         </svg>
         </div>
-        <div class="terminal">
-            <menu>
-                <li class="red"></li>
-                <li class="yellow"></li>
-                <li class="green"></li>
-            </menu>
-
-            <div class="wrapper" id="wrapper"></div>
+        <div class="terminal_wrapper">
+            <div class="terminal">
+                <menu>
+                    <li class="red"></li>
+                    <li class="yellow"></li>
+                    <li class="green"></li>
+                </menu>
+    
+                <div class="wrapper" id="wrapper"></div>
+            </div>
+            <div class="projects_section">
+                <span class="close"></span>
+                <div class="project"></div>
+            </div>
         </div>
     </main>
     
@@ -48,6 +54,10 @@
 
         <script>
             var isReduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+            $('.close').click(function(){
+                $('.projects_section').removeClass('active')
+            })
         </script>
     </footer>
 </body>
