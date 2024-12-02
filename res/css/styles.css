@@ -193,6 +193,7 @@ main{
     width: 100vw;
     height: 100svh;
     transition: grid-template-columns 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    overflow: clip;
 
     &:has(.projects_section.active){
         --_project-width: 0.5fr;
@@ -281,10 +282,7 @@ main{
     p.hoverable{
         cursor: pointer;
         width: fit-content;
-        
-        &:hover{
-            text-decoration: underline;
-        }
+        text-decoration: underline;
 
         &[disabled]{
             cursor: not-allowed;
