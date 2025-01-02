@@ -351,11 +351,11 @@ function TerminalWrapper({option}) {
         }
     }, [state])
 
-    /*useEffect(() => {
+    useEffect(() => {
         getVisits().then(data => {
             setVisits(data.count)
         })
-    }, [])*/
+    }, [])
 
     return (
         <>
