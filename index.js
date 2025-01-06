@@ -127,8 +127,24 @@ function TerminalSection({currState, stateSetter}) {
                     <h2><RandomizedText text="Experience:" /></h2>
                     <p><RandomizedText text="4+ years: Front End Developer" /></p>
                     <br/>
-                    <h2><RandomizedText text="Toolset:"/></h2>
-                    <p><RandomizedText text="JQuery, React, NodeJS, Express, PHP, Laravel, Wordpress, Docker, AngularJS"/></p>
+                    <h2><RandomizedText text="Tech Stack:"/></h2>
+                    <ul col="3">
+                        <li><RandomizedText text="HTML"/></li>
+                        <li><RandomizedText text="CSS/TailwindCSS"/></li>
+                        <li><RandomizedText text="JS"/></li>
+                        <li><RandomizedText text="JQuery"/></li>
+                        <li><RandomizedText text="React"/></li>
+                        <li><RandomizedText text="NodeJS"/></li>
+                        <li><RandomizedText text="Puppeteer"/></li>
+                        <li><RandomizedText text="ExpressJS"/></li>
+                        <li><RandomizedText text="AngularJS"/></li>
+                        <li><RandomizedText text="PHP/Laravel/Cake"/></li>
+                        <li><RandomizedText text="Wordpress"/></li>
+                        <li><RandomizedText text="Pug"/></li>
+                        <li><RandomizedText text="SQL"/></li>
+                        <li><RandomizedText text="Docker"/></li>
+                        <li><RandomizedText text="Git"/></li>
+                    </ul>
                     </>
                 )
             case 'resume':

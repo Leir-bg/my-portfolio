@@ -329,6 +329,16 @@ main{
         }
     }
 
+    ul[col="3"] li{
+        display: inline-block;
+        width: max(150px, 33%);
+
+        &:before{
+            content: "- ";
+            display: inline;
+        }
+    }
+
     ol{
         margin-block: var(--gap);
         padding-left: calc(var(--gap) * 4);
