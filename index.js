@@ -83,7 +83,7 @@ function RandomizedText({text}){
 }
 
 function TerminalHistory({currstate, visits}) {
-    return <li>G:\Users\GUEST_{visits}\{getOption(currstate)}</li>
+    return <li>G:/Users/GUEST_{visits}/{getOption(currstate)}</li>
 }
 
 function TerminalSection({currState, stateSetter}) {
@@ -228,7 +228,7 @@ function TerminalInput({currstate, stateSetter, visits}) {
             e.preventDefault()
             handleInput(e)
         }}>
-            <label htmlFor="input">G:\Users\GUEST_{visits}\{getOption(currstate)}&gt;</label>
+            <label htmlFor="input">G:/Users/GUEST_{visits}/{getOption(currstate)}&gt;</label>
             <input id="input" type="text" placeholder="cd ../option" />
         </form>
     )
