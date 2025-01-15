@@ -15,7 +15,6 @@ const uriCounter2 = 'https://api.counterapi.dev/v1'
 const getVisits = async () => {
     const response = await fetch(`${uriCounter1}/${namespace}/${keyspace}/up`)
     const data = await response.json()
-    console.log(data.count)
     return data
 }
 
@@ -295,6 +294,22 @@ const projects = [
         tools: ['Laravel', 'Docker', 'Blade', 'TailwindCSS', 'JS'],
         img: 'laagtacebu.png',
         repo: ''
+    },
+    {
+        name: 'Counter API',
+        key: 'counterapi',
+        desc: 'A simple API I made to count visits to my portfolio, since the one I used keeps going down.',
+        tools: ['NodeJS', 'ExpressJS', 'Mongodb', 'JS', 'Render'],
+        img: '',
+        repot: 'https://github.com/Leir-bg/counterapi'
+    },
+    {
+        name: 'Mobile Game API (MLBB)',
+        key: 'mlbbapi',
+        desc: 'An unofficial API for Mobile Legends: Bang Bang game for public use. Data is forked from this repo (https://github.com/p3hndrx/MLBB-API).',
+        tools: ['NodeJS', 'ExpressJS', 'JS', 'Render'],
+        img: 'mlbbapi.png',
+        repo: 'https://github.com/Leir-bg/MLBB-API'
     }
 ]
 
@@ -316,7 +331,9 @@ function TerminalProject() {
         'tailwindcss': 'tailwind.svg',
         'php': 'php.png',
         'puppeteer': 'puppeteer.svg',
-        'vscode': 'vscode.svg'
+        'vscode': 'vscode.svg',
+        'mongodb': 'mongodb.svg',
+        'render': 'render.jpg'
     }
 
     const handleClick = (currProject = '') => {
