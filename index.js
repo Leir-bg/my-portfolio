@@ -10,7 +10,7 @@ const namespace = encodeURIComponent('portfolio-gabrielcorpuz-new')
 const keyspace = encodeURIComponent('visits')
 
 const getVisits = async () => {
-    const response = await fetch(`https://counterapi-9hre.onrender.com/${namespace}/${keyspace}/up`)
+    const response = await fetch(`https://api.counterapi.dev/v1/${namespace}/${keyspace}/up`)
     const data = await response.json()
     return data
 }
