@@ -13,9 +13,17 @@ const uriCounter1 = 'https://counterapi-9hre.onrender.com'
 const uriCounter2 = 'https://api.counterapi.dev/v1'
 
 const getVisits = async () => {
-    const response = await fetch(`${uriCounter1}/${namespace}/${keyspace}/up`)
-    const data = await response.json()
-    return data
+    const response = await fetch(`${uriCounter2}/${namespace}/${keyspace}/up`)
+    
+    if(response.status === 200){
+        const data = await response.json()
+        return data.count
+    }
+    else{
+        const response2 = await fetch(`${uriCounter1}/${namespace}/${keyspace}/up`)
+        const data = await response2.json()
+        return data.count
+    }
 }
 
 const terminalOptions = [
@@ -390,9 +398,7 @@ function TerminalWrapper({option}) {
     }, [state])
 
     useEffect(() => {
-        getVisits().then(data => {
-            setVisits(data.count)
-        })
+        getVisits().then(data => setVisits(data))
     }, [])
 
     return (
