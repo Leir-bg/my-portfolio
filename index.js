@@ -49,10 +49,10 @@ const downloadResume = () => {
 }
 
 const downloadLogs = async () => {
-    const response = await fetch(`${uriCounter2}/${namespace}/${keyspace}/log`)
+    response = await fetch(`${uriCounter2}/${namespace}/${keyspace}/list?group_by=day`)
     
     if(!response.status === 200){
-        response = await fetch(`${uriCounter2}/${namespace}/${keyspace}/list?group_by=day`)
+        const response = await fetch(`${uriCounter1}/${namespace}/${keyspace}/log`)
     }
     
     const data = await response.json()
