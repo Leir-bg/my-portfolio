@@ -147,7 +147,7 @@ function TerminalSection({currState, stateSetter}) {
                     <ul col="3">
                         <li><RandomizedText text="HTML"/></li>
                         <li><RandomizedText text="CSS/TailwindCSS"/></li>
-                        <li><RandomizedText text="JS"/></li>
+                        <li><RandomizedText text="JS (ECMAScript)"/></li>
                         <li><RandomizedText text="JQuery"/></li>
                         <li><RandomizedText text="React"/></li>
                         <li><RandomizedText text="NodeJS"/></li>
@@ -399,6 +399,14 @@ function TerminalWrapper({option}) {
         if(classArray.length > 2){
             bg.removeClass(`${classArray[1]}`)
         }
+
+        const form = document.querySelector('.input_wrap')
+        form.addEventListener('submit', function(){
+            document.querySelector('.wrapper').scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            })
+        })
     }, [state])
 
     useEffect(() => {
