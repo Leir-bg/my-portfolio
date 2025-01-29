@@ -49,8 +49,12 @@ const downloadResume = () => {
 }
 
 const downloadLogs = async () => {
-    const response = await fetch(`${uriCounter1}/${namespace}/${keyspace}/log`)
-    // const response = await fetch(`https://api.counterapi.dev/v1/${namespace}/${keyspace}/list?group_by=day`)
+    const response = await fetch(`${uriCounter2}/${namespace}/${keyspace}/log`)
+    
+    if(!response.status === 200){
+        response = await fetch(`${uriCounter2}/${namespace}/${keyspace}/list?group_by=day`)
+    }
+    
     const data = await response.json()
     
     const link = document.createElement('a')
