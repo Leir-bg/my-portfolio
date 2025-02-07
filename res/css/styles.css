@@ -348,6 +348,10 @@ main{
             content: "- ";
             display: inline;
         }
+
+        a{
+            cursor: pointer;
+        }
     }
 
     ol{
