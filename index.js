@@ -171,6 +171,7 @@ function TerminalSection({currState, stateSetter}) {
                         <li><a href="https://www.northridgebehavioral.com"><RandomizedText text="https://www.northridgebehavioral.com"/></a></li>
                         <li><a href="https://www.mytreasurecare.com"><RandomizedText text="https://www.mytreasurecare.com"/></a></li>
                     </ul>
+                    <br/>
                     </>
                 )
             case 'resume':
