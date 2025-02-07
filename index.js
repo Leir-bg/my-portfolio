@@ -163,7 +163,7 @@ function TerminalSection({currState, stateSetter}) {
                     </ul>
                     <br/>
                     <h2><RandomizedText text="Websites I've previously worked on:"/></h2>
-                    <ul col="3">
+                    <ul col="2">
                         <li><a href="https://usc.edu.ph"><RandomizedText text="https://usc.edu.ph"/></a></li>
                         <li><a href="https://publishinghouse.usc.edu.ph/Home/Index"><RandomizedText text="https://publishinghouse.usc.edu.ph/Home/Index"/></a></li>
                         <li><a href="https://www.polymedpharmacy.com"><RandomizedText text="https://www.polymedpharmacy.com"/></a></li>
