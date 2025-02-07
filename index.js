@@ -193,6 +193,10 @@ function TerminalSection({currState, stateSetter}) {
                         <RandomizedText text="LinkedIn:"/>&nbsp;
                         <a target="_blank" href="https://www.linkedin.com/in/gcorpuz091416/"><RandomizedText text="www.linkedin.com/in/gcorpuz091416"/></a>
                     </p>
+                    <p>
+                        <RandomizedText text="GitHub:"/>&nbsp;
+                        <a target="_blank" href="https://github.com/Leir-bg/"><RandomizedText text="github.com/Leir-bg"/></a>
+                    </p>
                     </>
                 )
             case 'log':
