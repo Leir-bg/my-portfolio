@@ -121,7 +121,7 @@ function TerminalSection({currState, stateSetter}) {
                     <div className="col2">
                         <div className="pp">
                             <img src="./res/images/profile.jpg" alt="Gabriel D. Corpuz" />
-                            <p><RandomizedText text="Hello! I'm Gabriel Corpuz, a 26-year-old front-end web developer based in Cebu City. I'm passionate about creating dynamic and responsive websites, and I'm currently on a journey to become a full-stack developer." /></p>
+                            <p><RandomizedText text="Hello! I'm Gabriel Corpuz, a 27-year-old front-end web developer based in Cebu City. I'm passionate about creating dynamic and responsive websites, and I'm currently on a journey to become a full-stack developer." /></p>
                         </div>
                         <div className="edu">
                             <h2><RandomizedText text="Education:" /></h2>
@@ -141,7 +141,7 @@ function TerminalSection({currState, stateSetter}) {
                 return (
                     <>
                     <h2><RandomizedText text="Experience:" /></h2>
-                    <p><RandomizedText text="4+ years: Front End Developer" /></p>
+                    <p><RandomizedText text="5+ years: Front End Developer" /></p>
                     <br/>
                     <h2><RandomizedText text="Tech Stack:"/></h2>
                     <ul col="3">

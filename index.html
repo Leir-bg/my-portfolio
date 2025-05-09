@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio | Gabriel Corpuz</title>
-
+    
     <link rel="stylesheet" href="res/css/styles.css">
 </head>
 <body>
@@ -26,39 +26,157 @@
                 <use xlink:href="#gentle-wave" x="48" y="7"/>
             </g>
         </svg>
+    </div>
+    <div class="terminal_wrapper">
+        <div class="terminal">
+            <menu>
+                <li class="red"></li>
+                <li class="yellow"></li>
+                <li class="green"></li>
+            </menu>
+            
+            <div class="wrapper" id="wrapper"></div>
         </div>
-        <div class="terminal_wrapper">
-            <div class="terminal">
-                <menu>
-                    <li class="red"></li>
-                    <li class="yellow"></li>
-                    <li class="green"></li>
-                </menu>
-    
-                <div class="wrapper" id="wrapper"></div>
-            </div>
-            <div class="projects_section">
-                <span class="close"></span>
-                <div class="project"></div>
-            </div>
+        <div class="projects_section">
+            <span class="close"></span>
+            <div class="project"></div>
         </div>
-    </main>
+    </div>
+</main>
+
+<aside id="review_widget">
+    <span class="close">x</span>
+    <h2>Leave a Review</h2>
+    <p>What do you think of my portfolio?</p>
+    <form>
+        <textarea name="review_body" id="review_body" required></textarea>
+        <input type="text" name="review_name" id="review_name" placeholder="Anonymous" value="Anonymous">
+        <button type="submit">Submit</button>
+    </form>
+</aside>
+
+<footer>
+    <script src="res/scripts/jquery.min.js"></script>
+    <script src="https://unpkg.com/react@18.0.0/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18.0.0/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel" src="index.js"></script>
     
-    <span id="counter"></span>
-    <footer>
-        <script src="res/scripts/jquery.min.js"></script>
-        <script src="https://unpkg.com/react@18.0.0/umd/react.production.min.js" crossorigin></script>
-        <script src="https://unpkg.com/react-dom@18.0.0/umd/react-dom.production.min.js" crossorigin></script>
-        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-        <script type="text/babel" src="index.js"></script>
+    <script>
+        var isReduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        
+        $('.close').click(function(){
+            $('.projects_section').removeClass('active')
+        })
+    </script>
+    
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-analytics.js";
+        import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-auth.js";
+        import { getDatabase, ref, push, get } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-database.js";
+        
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+        
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyBlaY8ZbxXeT9vGuCd0PRzsNaUOJF6OGPo",
+            authDomain: "portfolio-reviews-1fe71.firebaseapp.com",
+            projectId: "portfolio-reviews-1fe71",
+            storageBucket: "portfolio-reviews-1fe71.firebasestorage.app",
+            messagingSenderId: "17213686373",
+            appId: "1:17213686373:web:47197382b8162ff6eb7c8c",
+            measurementId: "G-Z5YEGBFBF0",
+            databaseURL: "https://portfolio-reviews-1fe71-default-rtdb.asia-southeast1.firebasedatabase.app/"
+        };
+        
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig)
+        const analytics = getAnalytics(app)
+        const database = getDatabase(app)
+        const auth = getAuth(app)
+        
+        const reviewForm = document.querySelector('#review_widget form')
+        reviewForm.addEventListener('submit', async (e) => {
+            e.preventDefault()
+            const reviewBody = document.querySelector('#review_body').value
+            const reviewName = document.querySelector('#review_name').value
 
-        <script>
-            var isReduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
-            $('.close').click(function(){
-                $('.projects_section').removeClass('active')
+            if(reviewBody.includes('@gmail.com')){
+                await isAuth(reviewBody, reviewName)
+                fetchReviews()
+                return
+            }
+            
+            const reviewsRef = ref(database, 'reviews')
+            push(reviewsRef, {
+                body: reviewBody,
+                name: reviewName,
+                date: new Date().toLocaleDateString('en-US', {
+                    month: 'long',
+                    day: '2-digit',
+                    year: 'numeric'
+                })
             })
-        </script>
-    </footer>
+            
+            document.querySelector('#review_widget').innerHTML = '<h2>Thank you for your review!</h2>'
+            setTimeout(() => {
+                document.querySelector('#review_widget').style.display = 'none'
+            }, 2000)
+        })
+
+        const closeReviewWidget = document.querySelector('#review_widget .close')
+        closeReviewWidget.addEventListener('click', () => {
+            document.querySelector('#review_widget').style.display = 'none'
+        })
+
+        async function isAuth(email, pass){
+            try{
+                await signInWithEmailAndPassword(auth, email, pass)
+                    .then((userCredential) => {
+                        return true
+                    })
+                    .catch((error) => {
+                        return false
+                    })
+            }
+            catch(e){
+                console.error(e)
+                return false
+            }
+        }
+
+        function fetchReviews(){
+            const reviewsRef = ref(database, 'reviews')
+            
+            get(reviewsRef).then((snapshot) => {
+                onAuthStateChanged(auth, (user) => {
+                    if(user){
+                        if(snapshot.exists()){
+                            const reviews = snapshot.val()
+                            const blob = new Blob([JSON.stringify(reviews)], {type: 'application/json'})
+                            const link = document.createElement('a')
+                            link.href = URL.createObjectURL(blob)
+                            link.download = 'reviews.json'
+                            link.click()
+                            URL.revokeObjectURL(link.href)
+                        }
+                        else{
+                            console.log("No data available")
+                        }
+                    } 
+                    else{
+                        console.log('User is not authenticated')
+                    }
+                })
+            }).catch((error) => {
+                console.error(error)
+            })
+        }
+    </script>
+</footer>
 </body>
 </html>
