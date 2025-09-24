@@ -283,6 +283,14 @@ const projects = [
         repo: ''
     },
     {
+        name: 'CSS only color-picker',
+        key: 'csscolorpicker',
+        desc: 'A simple color-picker made with only HTML and CSS, no JS. Made for fun and practice.',
+        tools: ['HTML', 'CSS'],
+        img: 'csscolorpicker.png',
+        repo: 'https://github.com/FDC-gabriel/color-picker'
+    },
+    {
         name: 'Go Dark Proweaver',
         key: 'godark',
         desc: 'A custom Wordpress plugin I made for Proweaver, Inc. websites to quickly switch color themes, there were no compatible dark theme plugins for their websites before. (No longer maintained)',
