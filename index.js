@@ -14,12 +14,12 @@ const uriCounter2 = 'https://api.counterapi.dev/v1'
 
 const getVisits = async () => {
     const response = await fetch(`${uriCounter2}/${namespace}/${keyspace}/up`)
-    
-    if(response.status === 200){
+
+    if (response.status === 200) {
         const data = await response.json()
         return data.count
     }
-    else{
+    else {
         const response2 = await fetch(`${uriCounter1}/${namespace}/${keyspace}/up`)
         const data = await response2.json()
         return data.count
@@ -27,13 +27,13 @@ const getVisits = async () => {
 }
 
 const terminalOptions = [
-    {name: 'Home', key: 'home'},
-    {name: 'About', key: 'about'},
-    {name: 'Experience and Skills', key: 'exp'},
-    {name: 'Projects', key: 'prjs'},
-    {name: 'Resume', key: 'resume'},
-    {name: 'Contact', key: 'contact'},
-    {name: '404', key: '404'}
+    { name: 'Home', key: 'home' },
+    { name: 'About', key: 'about' },
+    { name: 'Experience and Skills', key: 'exp' },
+    { name: 'Projects', key: 'prjs' },
+    { name: 'Resume', key: 'resume' },
+    { name: 'Contact', key: 'contact' },
+    { name: '404', key: '404' }
 ]
 
 const getOption = (key) => {
@@ -50,47 +50,47 @@ const downloadResume = () => {
 
 const downloadLogs = async () => {
     let response = await fetch(`${uriCounter2}/${namespace}/${keyspace}/list?group_by=day`)
-    
-    if(!response.status === 200){
+
+    if (!response.status === 200) {
         response = await fetch(`${uriCounter1}/${namespace}/${keyspace}/log`)
     }
-    
+
     const data = await response.json()
-    
+
     const link = document.createElement('a')
-    link.href = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'}))
+    link.href = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }))
     link.download = 'logs.json'
     link.click()
 }
 
-function RandomizedText({text}){
+function RandomizedText({ text }) {
     const [displayText, setDisplayText] = useState(text)
 
-    if(!isReduceMotion){
+    if (!isReduceMotion) {
         useEffect(() => {
             const speed = 50
             const baseString = '1234567890 ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz .,!@#$%&'
-    
+
             const skip = 20
             const charJump = Math.floor(Math.abs(text.length / skip))
-            
+
             let iteration = 0
-    
-            function shuffleText(){
-                if(iteration <= text.length){
+
+            function shuffleText() {
+                if (iteration <= text.length) {
                     const randomChar = baseString.charAt(Math.floor(Math.random() * baseString.length))
                     const newText = text.slice(0, iteration) + randomChar + text.slice(iteration + skip)
-    
+
                     setDisplayText(newText)
                     iteration += charJump || text.length / 3
 
                     setTimeout(shuffleText, speed)
                 }
-                else{
+                else {
                     setDisplayText(text)
                 }
             }
-    
+
             shuffleText()
         }, [text])
     }
@@ -98,22 +98,22 @@ function RandomizedText({text}){
     return <>{displayText}</>
 }
 
-function TerminalHistory({currstate, visits}) {
+function TerminalHistory({ currstate, visits }) {
     return <li>G:/Users/GUEST_{visits}/{getOption(currstate)}</li>
 }
 
-function TerminalSection({currState, stateSetter}) {
+function TerminalSection({ currState, stateSetter }) {
     const renderContent = () => {
-        switch(currState){
+        switch (currState) {
             case 'home':
                 return (
                     <>
-                    <p><RandomizedText text="Hi! Welcome to my portfolio." /></p>
-                    <p>
-                        <RandomizedText text="To interact with the terminal, input 'cd ../' followed by the " />
-                        <span className="option"><RandomizedText text="(option)"/></span>
-                        <RandomizedText text="."/>
-                    </p>
+                        <p><RandomizedText text="Hi! Welcome to my portfolio." /></p>
+                        <p>
+                            <RandomizedText text="To interact with the terminal, input 'cd ' followed by the " />
+                            <span className="option"><RandomizedText text="(option)" /></span>
+                            <RandomizedText text="." />
+                        </p>
                     </>
                 )
             case 'about':
@@ -132,46 +132,46 @@ function TerminalSection({currState, stateSetter}) {
                             <p><RandomizedText text="CSS/JS updates, AI, other advancements in technology, code techniques" /></p>
                         </div>
                         <div className="hobby">
-                            <h2><RandomizedText text="Hobbies:"/></h2>
-                            <p><RandomizedText text="Learning new code techniques, reading books/ebooks, playing games"/></p>
+                            <h2><RandomizedText text="Hobbies:" /></h2>
+                            <p><RandomizedText text="Learning new code techniques, reading books/ebooks, playing games" /></p>
                         </div>
                     </div>
                 )
             case 'exp':
                 return (
                     <>
-                    <h2><RandomizedText text="Experience:" /></h2>
-                    <p><RandomizedText text="5+ years: Front End Developer" /></p>
-                    <br/>
-                    <h2><RandomizedText text="Tech Stack:"/></h2>
-                    <ul col="3">
-                        <li><RandomizedText text="HTML"/></li>
-                        <li><RandomizedText text="CSS/TailwindCSS"/></li>
-                        <li><RandomizedText text="JS (ECMAScript)"/></li>
-                        <li><RandomizedText text="JQuery"/></li>
-                        <li><RandomizedText text="React"/></li>
-                        <li><RandomizedText text="NodeJS"/></li>
-                        <li><RandomizedText text="Puppeteer"/></li>
-                        <li><RandomizedText text="ExpressJS"/></li>
-                        <li><RandomizedText text="AngularJS"/></li>
-                        <li><RandomizedText text="PHP/Laravel/Cake"/></li>
-                        <li><RandomizedText text="Wordpress"/></li>
-                        <li><RandomizedText text="Pug"/></li>
-                        <li><RandomizedText text="SQL"/></li>
-                        <li><RandomizedText text="Docker"/></li>
-                        <li><RandomizedText text="Git"/></li>
-                    </ul>
-                    <br/>
-                    <h2><RandomizedText text="Websites I've previously worked on:"/></h2>
-                    <ul col="2">
-                        <li><a target="_blank" href="https://usc.edu.ph"><RandomizedText text="https://usc.edu.ph"/></a></li>
-                        <li><a target="_blank" href="https://publishinghouse.usc.edu.ph/Home/Index"><RandomizedText text="https://publishinghouse.usc.edu.ph/Home/Index"/></a></li>
-                        <li><a target="_blank" href="https://www.polymedpharmacy.com"><RandomizedText text="https://www.polymedpharmacy.com"/></a></li>
-                        <li><a target="_blank" href="https://www.consulting-experts.com"><RandomizedText text="https://www.consulting-experts.com"/></a></li>
-                        <li><a target="_blank" href="https://www.northridgebehavioral.com"><RandomizedText text="https://www.northridgebehavioral.com"/></a></li>
-                        <li><a target="_blank" href="https://www.mytreasurecare.com"><RandomizedText text="https://www.mytreasurecare.com"/></a></li>
-                    </ul>
-                    <br/>
+                        <h2><RandomizedText text="Experience:" /></h2>
+                        <p><RandomizedText text="5+ years: Front End Developer" /></p>
+                        <br />
+                        <h2><RandomizedText text="Tech Stack:" /></h2>
+                        <ul col="3">
+                            <li><RandomizedText text="HTML" /></li>
+                            <li><RandomizedText text="CSS/TailwindCSS" /></li>
+                            <li><RandomizedText text="JS (ECMAScript)" /></li>
+                            <li><RandomizedText text="JQuery" /></li>
+                            <li><RandomizedText text="React" /></li>
+                            <li><RandomizedText text="NodeJS" /></li>
+                            <li><RandomizedText text="Puppeteer" /></li>
+                            <li><RandomizedText text="ExpressJS" /></li>
+                            <li><RandomizedText text="AngularJS" /></li>
+                            <li><RandomizedText text="PHP/Laravel/Cake" /></li>
+                            <li><RandomizedText text="Wordpress" /></li>
+                            <li><RandomizedText text="Pug" /></li>
+                            <li><RandomizedText text="SQL" /></li>
+                            <li><RandomizedText text="Docker" /></li>
+                            <li><RandomizedText text="Git" /></li>
+                        </ul>
+                        <br />
+                        <h2><RandomizedText text="Websites I've previously worked on:" /></h2>
+                        <ul col="2">
+                            <li><a target="_blank" href="https://usc.edu.ph"><RandomizedText text="https://usc.edu.ph" /></a></li>
+                            <li><a target="_blank" href="https://publishinghouse.usc.edu.ph/Home/Index"><RandomizedText text="https://publishinghouse.usc.edu.ph/Home/Index" /></a></li>
+                            <li><a target="_blank" href="https://www.polymedpharmacy.com"><RandomizedText text="https://www.polymedpharmacy.com" /></a></li>
+                            <li><a target="_blank" href="https://www.consulting-experts.com"><RandomizedText text="https://www.consulting-experts.com" /></a></li>
+                            <li><a target="_blank" href="https://www.northridgebehavioral.com"><RandomizedText text="https://www.northridgebehavioral.com" /></a></li>
+                            <li><a target="_blank" href="https://www.mytreasurecare.com"><RandomizedText text="https://www.mytreasurecare.com" /></a></li>
+                        </ul>
+                        <br />
                     </>
                 )
             case 'resume':
@@ -180,23 +180,23 @@ function TerminalSection({currState, stateSetter}) {
             case 'contact':
                 return (
                     <>
-                    <h2><RandomizedText text="Contact:"/></h2>
-                    <p>
-                        <RandomizedText text="Cellphone:"/>&nbsp;
-                        <a href="tel:+639305933195"><RandomizedText text="+63 930 593 3195"/></a>
-                    </p>
-                    <p>
-                        <RandomizedText text="Email:"/>&nbsp;
-                        <a href="mailto:gabrielcorpuz0914@gmail.com"><RandomizedText text="gabrielcorpuz0914@gmail.com"/></a>
-                    </p>
-                    <p>
-                        <RandomizedText text="LinkedIn:"/>&nbsp;
-                        <a target="_blank" href="https://www.linkedin.com/in/gcorpuz091416/"><RandomizedText text="www.linkedin.com/in/gcorpuz091416"/></a>
-                    </p>
-                    <p>
-                        <RandomizedText text="GitHub:"/>&nbsp;
-                        <a target="_blank" href="https://github.com/Leir-bg/"><RandomizedText text="github.com/Leir-bg"/></a>
-                    </p>
+                        <h2><RandomizedText text="Contact:" /></h2>
+                        <p>
+                            <RandomizedText text="Cellphone:" />&nbsp;
+                            <a href="tel:+639305933195"><RandomizedText text="+63 930 593 3195" /></a>
+                        </p>
+                        <p>
+                            <RandomizedText text="Email:" />&nbsp;
+                            <a href="mailto:gabrielcorpuz0914@gmail.com"><RandomizedText text="gabrielcorpuz0914@gmail.com" /></a>
+                        </p>
+                        <p>
+                            <RandomizedText text="LinkedIn:" />&nbsp;
+                            <a target="_blank" href="https://www.linkedin.com/in/gcorpuz091416/"><RandomizedText text="www.linkedin.com/in/gcorpuz091416" /></a>
+                        </p>
+                        <p>
+                            <RandomizedText text="GitHub:" />&nbsp;
+                            <a target="_blank" href="https://github.com/Leir-bg/"><RandomizedText text="github.com/Leir-bg" /></a>
+                        </p>
                     </>
                 )
             case 'log':
@@ -205,48 +205,48 @@ function TerminalSection({currState, stateSetter}) {
             case 'prjs':
                 return (
                     <>
-                    <h2><RandomizedText text="Projects" /></h2>
-                    <br/>
-                    <TerminalProject/>
+                        <h2><RandomizedText text="Projects" /></h2>
+                        <br />
+                        <TerminalProject />
                     </>
                 )
             default:
                 stateSetter('404')
                 return (
                     <>
-                    <p><RandomizedText text="Page not found (ᴗ_ ᴗ。)"/></p>
+                        <p><RandomizedText text="Page not found (ᴗ_ ᴗ。)" /></p>
                     </>
                 )
-                
+
         }
     }
 
     return renderContent()
 }
 
-function TerminalOptions({optionMap, currState}) {
+function TerminalOptions({ optionMap, currState }) {
     return (
         <>
-        {optionMap.map((opt) => (
-            opt.key !== currState &&
-            opt.key !== '404' && (
-                <li key={`${currState}-${opt.key}`}>
-                    <RandomizedText text={opt.name}/>&nbsp;
-                    <small><RandomizedText text={`(${opt.key})`}/></small>
-                </li>
-            )
-        ))}
+            {optionMap.map((opt) => (
+                opt.key !== currState &&
+                opt.key !== '404' && (
+                    <li key={`${currState}-${opt.key}`}>
+                        <RandomizedText text={opt.name} />&nbsp;
+                        <small><RandomizedText text={`(${opt.key})`} /></small>
+                    </li>
+                )
+            ))}
         </>
     )
 }
 
-function TerminalInput({currstate, stateSetter, visits}) {
+function TerminalInput({ currstate, stateSetter, visits }) {
     const handleInput = (e) => {
-        try{
-            const value = new RegExp(`cd ../(.*)`).exec(e.target[0].value)
+        try {
+            const value = new RegExp(`cd (.*)`).exec(e.target[0].value)
             stateSetter(value[value.length - 1])
         }
-        catch(err){
+        catch (err) {
             notFoundCounter++
             stateSetter('404')
         }
@@ -260,7 +260,7 @@ function TerminalInput({currstate, stateSetter, visits}) {
             handleInput(e)
         }}>
             <label htmlFor="input">G:/Users/GUEST_{visits}/{getOption(currstate)}&gt;</label>
-            <input id="input" type="text" placeholder="cd ../option" />
+            <input id="input" type="text" placeholder="cd option" />
         </form>
     )
 }
@@ -373,7 +373,7 @@ function TerminalProject() {
 
     const handleClick = (currProject = '') => {
         const project = projects.find(prj => prj.key === currProject)
-        if(project){
+        if (project) {
             projectsSection.classList.remove('active')
 
             setTimeout(() => {
@@ -408,7 +408,7 @@ function TerminalProject() {
     )
 }
 
-function TerminalWrapper({option}) {
+function TerminalWrapper({ option }) {
     const [state, setState] = useState('home')
     const [visits, setVisits] = useState('#')
 
@@ -417,14 +417,14 @@ function TerminalWrapper({option}) {
         const section = $('main').find('section')
         bg.addClass(`${state != '404' ? state : 'not_found'}`)
         section.addClass(`${state != '404' ? state : 'not_found'}`)
-        
+
         let classArray = bg.attr('class').split(' ')
-        if(classArray.length > 2){
+        if (classArray.length > 2) {
             bg.removeClass(`${classArray[1]}`)
         }
 
         const form = document.querySelector('.input_wrap')
-        form.addEventListener('submit', function(){
+        form.addEventListener('submit', function () {
             document.querySelector('.wrapper').scrollTo({
                 top: 0,
                 behavior: 'smooth'
@@ -438,19 +438,19 @@ function TerminalWrapper({option}) {
 
     return (
         <>
-        <ul className='history'>
-        <TerminalHistory currstate={state} visits={visits} />
-        </ul>
-        
-        <section>
-        <TerminalSection currState={state} stateSetter={setState} />
-        </section>
-        
-        <ol type='1' className='options'>
-        <TerminalOptions optionMap={terminalOptions} currState={state} />
-        </ol>
-        
-        <TerminalInput currstate={state} stateSetter={setState} visits={visits} />
+            <ul className='history'>
+                <TerminalHistory currstate={state} visits={visits} />
+            </ul>
+
+            <section>
+                <TerminalSection currState={state} stateSetter={setState} />
+            </section>
+
+            <ol type='1' className='options'>
+                <TerminalOptions optionMap={terminalOptions} currState={state} />
+            </ol>
+
+            <TerminalInput currstate={state} stateSetter={setState} visits={visits} />
         </>
     )
 }
