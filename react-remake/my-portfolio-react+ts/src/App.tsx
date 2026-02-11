@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { useAppSelector } from '@/hooks/StoreHook'
 import AnimatedBackground from '@/components/AnimatedBackground'
 import MacWindowOptions from '@/components/MacWindowOptions'
-// import TerminalPath from '@/components/TerminalPath'
+import TerminalPath from '@/components/TerminalPath'
 import TerminalOptions from '@/components/TerminalOptions'
 import TerminalInput from '@/components/TerminalInput'
 import ProjectsSection from '@/components/ProjectsSection'
@@ -80,7 +80,7 @@ function App() {
 					<MacWindowOptions />
 
 					<div className="wrapper" id="wrapper" ref={wrapperRef}>
-						{/* <TerminalPath /> */}
+						<TerminalPath />
 
 						<section>
 							{renderPage()}
