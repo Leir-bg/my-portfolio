@@ -339,7 +339,7 @@ a[href^="mailto:"] {
         }
     }
 
-    .terminal .wrapper > ul {
+    .wrapper > ul {
         margin-bottom: calc(var(--gap));
 
         li {
