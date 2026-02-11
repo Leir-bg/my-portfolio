@@ -314,22 +314,24 @@ a[href^="mailto:"] {
         color: #00ed00;
     }
 
-    .col2 {
-        display: flex;
-        flex-flow: row wrap;
+    .col2{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1em;
+        grid-auto-flow: row;
 
-        >div p {
+        > div p{
             display: grid;
             grid-template-columns: 1em 1fr;
         }
 
-        .pp {
+        .pp{
             display: flex;
             align-items: center;
             grid-column: 1/-1;
             gap: 1em;
-
-            img {
+            
+            img{
                 --_image-width: 100px;
                 width: var(--_image-width);
                 height: var(--_image-width);
