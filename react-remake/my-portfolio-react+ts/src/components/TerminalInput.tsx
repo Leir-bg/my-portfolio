@@ -8,6 +8,14 @@ interface TerminalInputProps {
     wrapperRef: RefObject<HTMLDivElement | null>
 }
 
+const terminalOptionMap: Record<string, string> = {
+    'home': 'Home',
+    'about': 'About',
+    'exp': 'Experience and Skills',
+    'prjs': 'Projects',
+    'contact': 'Contact'
+}
+
 function TerminalInput({ wrapperRef }: TerminalInputProps) {
     const currentPage = useAppSelector((state) => state.page.currentPage)
     const dispatch = useAppDispatch()
@@ -19,12 +27,12 @@ function TerminalInput({ wrapperRef }: TerminalInputProps) {
         try {
             const match = new RegExp('cd (.*)').exec(input)
             if (match) {
-                dispatch(goToPage(match[1]))
+                dispatch(goToPage([match[1], terminalOptionMap[match[1]]]))
                 setInput('')
             }
         }
         catch (error) {
-            dispatch(goToPage('404'))
+            dispatch(goToPage(['404', 'Not Found']))
         }
     }
 

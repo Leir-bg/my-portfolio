@@ -7,7 +7,7 @@ const uri1: string = encodeURI(`${import.meta.env.VITE_COUNTER_URI_1}`)
 const uri2: string = encodeURI(`${import.meta.env.VITE_COUNTER_URI_2}`)
 
 function TerminalPath() {
-    const currentPage = useAppSelector((state) => state.page.currentPage)
+    const currentPage = useAppSelector((state) => state.page.currentProperPage)
     const [visits, setVisits] = useState<number>(0)
 
     useEffect(() => {
