@@ -314,24 +314,24 @@ a[href^="mailto:"] {
         color: #00ed00;
     }
 
-    div.col2{
+    div.col2 {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 1em;
         grid-auto-flow: row;
 
-        > div p{
+        >div p {
             display: grid;
             grid-template-columns: 1em 1fr;
         }
 
-        .pp{
+        .pp {
             display: flex;
             align-items: center;
             grid-column: 1/-1;
             gap: 1em;
-            
-            img{
+
+            img {
                 --_image-width: 100px;
                 width: var(--_image-width);
                 height: var(--_image-width);
@@ -341,7 +341,7 @@ a[href^="mailto:"] {
         }
     }
 
-    .wrapper > ul {
+    .wrapper>ul {
         margin-bottom: calc(var(--gap));
 
         li {
@@ -453,7 +453,7 @@ a[href^="mailto:"] {
 .projects_section {
     position: relative;
     padding: 1em;
-    margin-right: -50vh;
+    margin-right: -100vw;
 
     &.active {
         margin-right: 0;

@@ -20,7 +20,11 @@ const iconMap: Record<string, string> = {
     puppeteer: 'puppeteer.svg',
     vscode: 'vscode.svg',
     mongodb: 'mongodb.svg',
-    render: 'render.jpg'
+    render: 'render.jpg',
+    sql: 'sql.svg',
+    vite: 'vite.svg',
+    fastify: 'fastify.png',
+    knex: 'knex.svg'
 }
 
 import { openProjects, closeProjects } from "@/store/projectReducer"
@@ -35,7 +39,8 @@ const ProjectsPage = ({ projectsSectionRef, projectContainerRef }: ProjectsPageP
     const currentProject = useAppSelector((state) => state.project.currProject)
 
     const handleClick = (currProject: string = currentProject) => {
-        const project = projects.find(prj => prj.key === currProject)
+        const allProjects = [...projects.major, ...projects.minor];
+        const project = allProjects.find(prj => prj.key === currProject)
 
         if (project) {
             dispatch(switchProject(project.key))
@@ -49,7 +54,7 @@ const ProjectsPage = ({ projectsSectionRef, projectContainerRef }: ProjectsPageP
                             <p>${project.desc}</p>
                             <h3>Tools used:</h3>
                             <ul>
-                                ${project.tools.map(tool => `<li><img src="./images/icons/${iconMap[tool.toLowerCase()]}" alt="${tool}" title="${tool}"/></li>`).join('')}
+                                ${project.tools.map(tool => `<li><img src="./images/icons/${iconMap[tool.toLowerCase()] || 'unavailable.jpg'}" alt="${tool}" title="${tool}"/></li>`).join('')}
                             </ul>
                             ${project.repo ? `<a target="_blank" href="${project.repo}">View on GitHub</a>` : '<p>Private Repository (for security reasons)</p>'}
                     `
@@ -65,11 +70,19 @@ const ProjectsPage = ({ projectsSectionRef, projectContainerRef }: ProjectsPageP
             <br />
             <div className="terminal_project">
                 <div>
-                    {projects.map(prj => {
-                        return <p onClick={() => handleClick(prj.key)} id={prj.key} className="hoverable" key={prj.key}>
+                    <h3><RandomizedText text="Major Projects" /></h3>
+                    {projects.major.map(prj => (
+                        <p onClick={() => handleClick(prj.key)} id={prj.key} className="hoverable" key={prj.key}>
                             <RandomizedText text={prj.name} />
                         </p>
-                    })}
+                    ))}
+                    <br />
+                    <h3><RandomizedText text="Minor Projects" /></h3>
+                    {projects.minor.map(prj => (
+                        <p onClick={() => handleClick(prj.key)} id={prj.key} className="hoverable" key={prj.key}>
+                            <RandomizedText text={prj.name} />
+                        </p>
+                    ))}
                 </div>
             </div>
         </>

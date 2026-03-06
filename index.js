@@ -368,7 +368,11 @@ function TerminalProject() {
         'puppeteer': 'puppeteer.svg',
         'vscode': 'vscode.svg',
         'mongodb': 'mongodb.svg',
-        'render': 'render.jpg'
+        'render': 'render.jpg',
+        'sql': 'sql.svg',
+        'vite': 'vite.svg',
+        'fastify': 'fastify.svg',
+        'knex': 'knex.svg'
     }
 
     const handleClick = (currProject = '') => {

@@ -6,3 +6,8 @@ export interface ProjectInterface {
     img: string,
     repo: string
 }
+
+export interface ProjectTypeInterface {
+    major: ProjectInterface[],
+    minor: ProjectInterface[]
+}

@@ -26,6 +26,7 @@ const Experience = () => (
         <br />
         <h2><RandomizedText text="Websites I've previously worked on:" /></h2>
         <ul className="col2">
+            <li><a target="_blank" href="https://cebu1070.com"><RandomizedText text="https://cebu1070.com" /></a></li>
             <li><a target="_blank" href="https://usc.edu.ph"><RandomizedText text="https://usc.edu.ph" /></a></li>
             <li><a target="_blank" href="https://publishinghouse.usc.edu.ph/Home/Index"><RandomizedText text="https://publishinghouse.usc.edu.ph/Home/Index" /></a></li>
             <li><a target="_blank" href="https://www.polymedpharmacy.com"><RandomizedText text="https://www.polymedpharmacy.com" /></a></li>
