@@ -45,16 +45,18 @@ function TerminalInput({ wrapperRef }: TerminalInputProps) {
 
     return (
         <form className="input_wrap" onSubmit={handleSubmit}>
-            <span className="terminal_prompt">$</span>
-            <input
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                className="terminal_input"
-                autoFocus
-                placeholder='cd option'
-                id='input'
-            />
+            <label className="terminal_prompt">
+                $
+                <input
+                    type="text"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    className="terminal_input"
+                    autoFocus
+                    placeholder='cd option'
+                    id='input'
+                />
+            </label>
         </form>
     )
 }

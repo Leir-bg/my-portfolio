@@ -24,7 +24,10 @@ const iconMap: Record<string, string> = {
     sql: 'sql.svg',
     vite: 'vite.svg',
     fastify: 'fastify.png',
-    knex: 'knex.svg'
+    knex: 'knex.svg',
+    expo: 'expo.png',
+    ts: 'typescript.png',
+    firebase: 'firebase.png'
 }
 
 import { openProjects, closeProjects } from "@/store/projectReducer"
@@ -49,7 +52,7 @@ const ProjectsPage = ({ projectsSectionRef, projectContainerRef }: ProjectsPageP
             setTimeout(() => {
                 if (projectContainerRef.current && projectsSectionRef.current) {
                     projectContainerRef.current.innerHTML = `
-                    <img class="hero" src="./images/screenshots/${project.img != '' ? project.img : 'unavailable.jpg'}" alt="${project.name}" title="${project.name}"/>
+                    <img class="hero" src="./images/screenshots/${project.img != '' ? project.img : 'unavailable.jpg'}" alt="${project.name}" title="${project.name}" width=${project.maxwidth}/>
                             <h2>${project.name}</h2>
                             <p>${project.desc}</p>
                             <h3>Tools used:</h3>
@@ -57,6 +60,7 @@ const ProjectsPage = ({ projectsSectionRef, projectContainerRef }: ProjectsPageP
                                 ${project.tools.map(tool => `<li><img src="./images/icons/${iconMap[tool.toLowerCase()] || 'unavailable.jpg'}" alt="${tool}" title="${tool}"/></li>`).join('')}
                             </ul>
                             ${project.repo ? `<a target="_blank" href="${project.repo}">View on GitHub</a>` : '<p>Private Repository (for security reasons)</p>'}
+                            ${project.link != '' ? `<a target="_blank" href="${project.link}">${project.link}</a>` : ''}
                     `
                     dispatch(openProjects())
                 }

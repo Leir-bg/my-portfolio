@@ -4,7 +4,9 @@ export interface ProjectInterface {
     desc: string,
     tools: string[],
     img: string,
-    repo: string
+    maxwidth: string,
+    repo: string,
+    link: string
 }
 
 export interface ProjectTypeInterface {

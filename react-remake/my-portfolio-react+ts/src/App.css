@@ -199,7 +199,7 @@ a[href^="mailto:"] {
 }
 
 .terminal_wrapper {
-    --_project-width: 0fr;
+    --_project-width: 0%;
     display: grid;
     grid-template-columns: 1fr var(--_project-width);
     width: 100vw;
@@ -208,7 +208,7 @@ a[href^="mailto:"] {
     overflow: clip;
 
     &:has(.projects_section.active) {
-        --_project-width: 0.5fr;
+        --_project-width: 50%;
     }
 }
 
@@ -402,7 +402,7 @@ a[href^="mailto:"] {
         input[type="text"],
         .terminal_input {
             margin-left: calc(var(--gap) / 2);
-            display: block;
+            display: inline-block;
             width: auto;
             background: transparent;
             border: none;
@@ -444,8 +444,16 @@ a[href^="mailto:"] {
             }
         }
 
+        div.about-col2 .pp {
+            display: block;
+        }
+
         .input_wrap {
             grid-template-columns: 1fr;
+        }
+
+        .hobby {
+            grid-column: span 2;
         }
     }
 }
@@ -454,6 +462,7 @@ a[href^="mailto:"] {
     position: relative;
     padding: 1em;
     margin-right: -100vw;
+    transition: margin-right 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 
     &.active {
         margin-right: 0;
@@ -494,7 +503,7 @@ a[href^="mailto:"] {
 
         img.hero {
             display: block;
-            width: 320px;
+            max-width: 600px;
             height: 100%;
             border-radius: 8px;
         }
@@ -575,21 +584,41 @@ aside {
         position: absolute;
     }
 
+    .terminal_wrapper {
+        /* Projects section is position:fixed on mobile, so collapse to single column */
+        grid-template-columns: 1fr;
+        transition: none;
+    }
+
     .projects_section {
-        margin-right: -100vw;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100svh;
+        width: 100vw;
+        margin-right: 0;
+        transform: translateX(100%);
+        transition: transform 0.45s cubic-bezier(0.075, 0.82, 0.165, 1);
+        overflow-y: auto;
+        z-index: 100;
 
         &.active {
-            position: absolute;
-            height: 100svh;
-            width: 100vw;
+            transform: translateX(0);
         }
 
         &:before {
             z-index: 2;
+            position: fixed;
         }
 
         img.hero {
             width: 80%;
+        }
+    }
+
+    .project {
+        ul {
+            flex-wrap: wrap;
         }
     }
 }
