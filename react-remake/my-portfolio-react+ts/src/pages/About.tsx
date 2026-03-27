@@ -4,8 +4,11 @@ const About = () => (
     <div className="col2 about-col2">
         <div className="pp">
             <img src="./images/profile.jpg" alt="Gabriel D. Corpuz" />
-            <p><RandomizedText text="Hello! I'm Gabriel Corpuz, a 28-year-old front-end web developer based in Cebu City. I'm passionate about creating dynamic and responsive websites, and I'm currently on a journey to become a full-stack developer." /></p>
-            <p><RandomizedText text="I'm also the developer behind Cebu 1070, a community platform for reporting and tracking fire incidents within Cebu City." /></p>
+            <p>
+                <RandomizedText text="Hello! I'm Gabriel Corpuz, a 28-year-old front-end web developer based in Cebu City. I'm passionate about creating dynamic and responsive websites, and I'm currently on a journey to become a full-stack developer." />
+                <br />
+                <RandomizedText text="I'm also the developer behind Cebu 1070, a community platform for reporting and tracking fire incidents within Cebu City." />
+            </p>
         </div>
         <div className="edu">
             <h2><RandomizedText text="Education:" /></h2>
