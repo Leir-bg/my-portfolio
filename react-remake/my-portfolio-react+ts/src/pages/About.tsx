@@ -20,7 +20,7 @@ const About = () => (
         </div>
         <div className="hobby">
             <h2><RandomizedText text="Hobbies:" /></h2>
-            <p><RandomizedText text="Learning new code techniques, reading books/ebooks, playing games" /></p>
+            <p><RandomizedText text="Learning new code techniques, reading books/ebooks, playing games, working out" /></p>
         </div>
     </div>
 )

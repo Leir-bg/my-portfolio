@@ -8,7 +8,7 @@ const terminalOptions: { name: string, key: string }[] = [
     { name: 'Projects', key: 'prjs' },
     { name: 'Resume', key: 'resume' },
     { name: 'Contact', key: 'contact' },
-    { name: '404', key: '404' }
+    { name: '404', key: 'not_found' }
 ]
 
 function TerminalOptions() {
@@ -19,7 +19,7 @@ function TerminalOptions() {
             {
                 terminalOptions.map((option) => {
                     return option.key !== currentPage &&
-                        option.key !== '404' && (
+                        option.key !== 'not_found' && (
                             <li key={`${currentPage}-${option.key}`}>
                                 <RandomizedText text={option.name} />&nbsp;
                                 <small><RandomizedText text={`(${option.key})`} /></small>

@@ -30,9 +30,13 @@ function TerminalInput({ wrapperRef }: TerminalInputProps) {
                 dispatch(goToPage([match[1], terminalOptionMap[match[1]]]))
                 setInput('')
             }
+            else {
+                dispatch(goToPage(['not_found', '404']))
+                setInput('')
+            }
         }
         catch (error) {
-            dispatch(goToPage(['404', 'Not Found']))
+            dispatch(goToPage(['not_found', '404']))
         }
     }
 
