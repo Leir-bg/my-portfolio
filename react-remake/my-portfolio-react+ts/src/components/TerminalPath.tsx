@@ -13,16 +13,17 @@ function TerminalPath() {
     useEffect(() => {
         const fetchVisits = async () => {
             try {
-                let response: Response = await fetch(`https://${uri2}/${namespace}/${keyspace}/up`)
+                const response = await Promise.all([
+                    fetch('https://api.counterapi.dev/v2/portfolio-gabriel-corpuz-v2/visits/up'),
+                    fetch('https://api.counterapi.dev/v2/portfolio-gabriel-corpuz-v2/visits')
+                ])
 
-                if (response.status === 200) {
-                    const data: any = await response.json()
-                    setVisits(data.count)
-                }
-                else {
-                    response = await fetch(`https://${uri1}/${namespace}/${keyspace}/up`)
-                    const data: any = await response.json()
-                    setVisits(data.count)
+                if (response[0].status === 200 && response[1].status === 200) {
+                    const [upres, countres] = await Promise.all([
+                        response[0].json(),
+                        response[1].json()
+                    ]);
+                    setVisits(countres.data.up_count)
                 }
             }
             catch (error) {

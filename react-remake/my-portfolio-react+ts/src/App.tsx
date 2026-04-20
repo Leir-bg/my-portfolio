@@ -80,7 +80,7 @@ function App() {
 					<MacWindowOptions />
 
 					<div className="wrapper" id="wrapper" ref={wrapperRef}>
-						{/*<TerminalPath />*/}
+						<TerminalPath />
 
 						<section>
 							{renderPage()}
